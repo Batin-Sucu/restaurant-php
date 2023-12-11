@@ -1,5 +1,6 @@
 <html>
   <body>
+    <?php include "nav.php"; ?>
     <form action="ara.php">
       <input type="text" name="q" placeholder="Ara">
       <button>Ara</button>

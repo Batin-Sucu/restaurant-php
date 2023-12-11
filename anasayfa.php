@@ -1,4 +1,5 @@
 <?php
+  include "nav.php";
   require_once "db.php";
 
   $resturantlar = $db->query("SELECT * FROM restaurant");
