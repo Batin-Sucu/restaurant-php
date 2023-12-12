@@ -1,4 +1,5 @@
 <?php
+  include "nav.php";
   require_once "db.php";
   require_once "session.php";
 
@@ -23,7 +24,7 @@
       <hr>
       <?php if(isset($_SESSION['id']) && $_SESSION['id'] != "") { ?>
         <form method="post">
-          <textarea name="yorum" cols="30" rows="10"><?php echo $yorumlar[array_search($_SESSION['id'], array_column($yorumlar, 'kullanici_id'))]['yorum']; ?></textarea>
+          <textarea name="yorum" cols="30" rows="10"><?php if(sizeof($yorumlar) > 0) echo $yorumlar[array_search($_SESSION['id'], array_column($yorumlar, 'kullanici_id'))]['yorum']; ?></textarea>
           <button name="yap">Yorum yap</button>
         </form>
       <?php } ?> 

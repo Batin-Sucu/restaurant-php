@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 12, 2023 at 09:51 AM
+-- Generation Time: Dec 12, 2023 at 07:24 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -45,7 +45,8 @@ CREATE TABLE `restaurant` (
   `isim` text NOT NULL,
   `iletisim` text NOT NULL,
   `puan` float(1,1) DEFAULT 0.0,
-  `adres` text NOT NULL
+  `adres` text NOT NULL,
+  `sahip` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -75,7 +76,8 @@ ALTER TABLE `kullanicilar`
 -- Indexes for table `restaurant`
 --
 ALTER TABLE `restaurant`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_sahip` (`sahip`);
 
 --
 -- Indexes for table `yorumlar`
@@ -104,6 +106,12 @@ ALTER TABLE `restaurant`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `restaurant`
+--
+ALTER TABLE `restaurant`
+  ADD CONSTRAINT `fk_sahip` FOREIGN KEY (`sahip`) REFERENCES `kullanicilar` (`id`);
 
 --
 -- Constraints for table `yorumlar`
