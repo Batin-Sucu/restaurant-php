@@ -15,6 +15,9 @@
     <?php if($kullanici['tur'] == 'yonetici') { ?>
       <a href="yonetim.php">Restoran Yonetim</a>
     <?php } ?>
+    <?php if($kullanici['tur'] == 'admin') { ?>
+      <a href="admin.php">Admin Yonetim</a>
+    <?php } ?>
   <?php } else { ?>
     <a href="giris.php">Giris</a>
     <a href="kayitol.php">Kayıt</a>
