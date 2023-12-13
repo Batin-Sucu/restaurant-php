@@ -3,17 +3,19 @@
   require_once "db.php";
 
   $resturantlar = $db->query("SELECT * FROM restaurant");
-  
-  foreach($resturantlar as $restaurant)
-  {
-    echo "<div>";
-    echo "<p>$restaurant[id]</p>";
-    echo "<p>$restaurant[isim]</p>";
-    echo "<p>$restaurant[iletisim]</p>";
-    echo "<p>$restaurant[adres]</p>";
-    echo "<p>$restaurant[puan]</p>";
-    echo "<a href=\"restaurant.php?id=$restaurant[id]\">Git</a>";
-    echo "</div>";
-  }
-  
 ?>
+
+<html>
+  <body>
+    <div>
+      <?php foreach($resturantlar as $restaurant) { ?>
+        <p><?php echo $restaurant["restaurant_id"] ?></p>
+        <p><?php echo $restaurant["isim"] ?></p>
+        <p><?php echo $restaurant["iletisim"] ?></p>
+        <p><?php echo $restaurant["adres"] ?></p>
+        <p><?php echo $restaurant["puan"] ?></p>
+        <a href=<?php echo "restaurant.php?id=".$restaurant["restaurant_id"] ?>>Git</a>
+      <?php } ?>
+    </div>
+  </body>
+</html>

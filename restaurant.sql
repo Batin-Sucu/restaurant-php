@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 12, 2023 at 07:24 PM
+-- Generation Time: Dec 13, 2023 at 06:23 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -41,7 +41,7 @@ CREATE TABLE `kullanicilar` (
 --
 
 CREATE TABLE `restaurant` (
-  `id` int(11) NOT NULL,
+  `restaurant_id` int(11) NOT NULL,
   `isim` text NOT NULL,
   `iletisim` text NOT NULL,
   `puan` float(1,1) DEFAULT 0.0,
@@ -76,7 +76,7 @@ ALTER TABLE `kullanicilar`
 -- Indexes for table `restaurant`
 --
 ALTER TABLE `restaurant`
-  ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`restaurant_id`),
   ADD KEY `fk_sahip` (`sahip`);
 
 --
@@ -101,7 +101,7 @@ ALTER TABLE `kullanicilar`
 -- AUTO_INCREMENT for table `restaurant`
 --
 ALTER TABLE `restaurant`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `restaurant_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -117,7 +117,7 @@ ALTER TABLE `restaurant`
 -- Constraints for table `yorumlar`
 --
 ALTER TABLE `yorumlar`
-  ADD CONSTRAINT `yorumlar_ibfk_1` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurant` (`id`),
+  ADD CONSTRAINT `yorumlar_ibfk_1` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurant` (`restaurant_id`),
   ADD CONSTRAINT `yorumlar_ibfk_2` FOREIGN KEY (`kullanici_id`) REFERENCES `kullanicilar` (`id`);
 COMMIT;
 

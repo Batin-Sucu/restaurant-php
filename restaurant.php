@@ -10,13 +10,13 @@
   }
   
   $id = $_GET['id'];
-  $restaurant = $db->query("SELECT * FROM restaurant WHERE id = $id")->fetch();
+  $restaurant = $db->query("SELECT * FROM restaurant WHERE restaurant_id = $id")->fetch();
   $yorumlar = $db->query("SELECT * FROM yorumlar INNER JOIN kullanicilar ON yorumlar.kullanici_id = kullanicilar.id WHERE restaurant_id = $id")->fetchAll();
 ?>
 
 <html>
   <body>
-      <p><?php echo $restaurant['id']; ?></p>
+      <p><?php echo $restaurant['restaurant_id']; ?></p>
       <p><?php echo $restaurant['isim']; ?></p>
       <p><?php echo $restaurant['iletisim']; ?></p>
       <p><?php echo $restaurant['adres']; ?></p>
