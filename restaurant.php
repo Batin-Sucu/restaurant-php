@@ -15,25 +15,32 @@
 ?>
 
 <html>
+  <head>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
   <body>
+    <div class="container mx-auto">
       <p><?php echo $restaurant['restaurant_id']; ?></p>
       <p><?php echo $restaurant['isim']; ?></p>
       <p><?php echo $restaurant['iletisim']; ?></p>
       <p><?php echo $restaurant['adres']; ?></p>
       <p><?php echo $restaurant['puan']; ?></p>
-      <hr>
-      <?php if(isset($_SESSION['id']) && $_SESSION['id'] != "") { ?>
-        <form method="post">
-          <textarea name="yorum" cols="30" rows="10"><?php if(sizeof($yorumlar) > 0) echo $yorumlar[array_search($_SESSION['id'], array_column($yorumlar, 'kullanici_id'))]['yorum']; ?></textarea>
-          <button name="yap">Yorum yap</button>
-        </form>
-      <?php } ?> 
-      <hr>
-      <?php foreach($yorumlar as $yorum) { ?>
-        <p><?php echo $yorum['kullanici_adi'] ?>:</p>
-        <p><?php echo $yorum['yorum']; ?></p>
-        <hr>
-      <?php } ?>
+      <div class="w-[720px] mx-auto">
+        <?php if(isset($_SESSION['id']) && $_SESSION['id'] != "") { ?>
+          <form method="post" class="flex flex-col gap-2 py-2">
+            <textarea name="yorum" cols="20" rows="5" class="border text-sm"><?php if(sizeof($yorumlar) > 0) echo $yorumlar[array_search($_SESSION['id'], array_column($yorumlar, 'kullanici_id'))]['yorum']; ?></textarea>
+            <button name="yap" class="border rounded px-12 hover:bg-neutral-200">Yorum yap</button>
+          </form>
+        <?php } ?> 
+        <p class="text-center text-2xl mt-24 mb-4">Diğerleri ne düşünüyor??</p>
+        <?php foreach($yorumlar as $yorum) { ?>
+          <div>
+            <p class="text-neutral-500 inline"><?php echo $yorum['kullanici_adi'] ?>:</p>
+            <p class="inline"><?php echo $yorum['yorum']; ?></p>
+          </div>
+        <?php } ?>
+      </div>
+    </div>
   </body>
 </html>
 

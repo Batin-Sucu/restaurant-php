@@ -1,10 +1,13 @@
 <html>
+  <head>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
   <body>
     <?php include "nav.php"; ?>
-    <form method="post">
-      <input type="text" name="kullanici_adi">
-      <input type="text" name="sifre">
-      <button>Kayit ol</button>
+    <form method="post" class="mx-auto flex flex-col w-fit mt-4 gap-4">
+      <input type="text" name="kullanici_adi" placeholder="kullanici adi" class="border rounded p-1 w-96">
+      <input type="text" name="sifre" placeholder="sifre" class="border rounded p-1 w-96">
+      <button class="border rounded px-12 hover:bg-neutral-200">Kayit ol</button>
     </form>
   </body>
 </html>

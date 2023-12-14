@@ -6,6 +6,9 @@
 ?>
 
 <html>
+  <head>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
   <body>
     <div>
       <?php foreach($resturantlar as $restaurant) { ?>

@@ -17,14 +17,17 @@
 ?>
 
 <html>
-    <body>
-        <form method="POST">
-            <label for="isim" >İş Yeri İsmi:</label><input name="isim" type="text"><br>
-            <label for="iletisim" >İletişim:</label><input name="iletisim" type="text"><br>
-            <label for="adres" >Adres:</label><textarea name="adres"></textarea> <br>
-            <button name="restoranKayit">Kayıt</button>
-        </form>
-    </body>
+  <head>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <form method="POST" class="mx-auto flex flex-col w-fit mt-4 gap-2">
+      <label for="isim" >İş Yeri İsmi:</label><input name="isim" type="text" class="border rounded p-1 w-96"><br>
+      <label for="iletisim" >İletişim:</label><input name="iletisim" type="text" class="border rounded p-1 w-96"><br>
+      <label for="adres" >Adres:</label><textarea name="adres" class="border rounded p-1 w-96"></textarea> <br>
+      <button name="restoranKayit" class="border rounded px-12 hover:bg-neutral-200">Kayıt</button>
+    </form>
+  </body>
 </html>
 
 <?php
