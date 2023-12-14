@@ -20,11 +20,10 @@
   </head>
   <body>
     <div class="container mx-auto">
-      <p><?php echo $restaurant['restaurant_id']; ?></p>
-      <p><?php echo $restaurant['isim']; ?></p>
-      <p><?php echo $restaurant['iletisim']; ?></p>
-      <p><?php echo $restaurant['adres']; ?></p>
-      <p><?php echo $restaurant['puan']; ?></p>
+      <p class="text-3xl text-center"><?php echo $restaurant['isim']; ?> <span class="text-sm">(<?php echo $restaurant['puan']; ?> Puan)</span></p>
+      <p><span class="text-lg">Iletisim: </span><?php echo $restaurant['iletisim']; ?></p>
+      <p><span class="text-lg">Adres: </span><?php echo $restaurant['adres']; ?></p>
+      <img class="mx-auto" width="500px" height="500px" src="<?php echo $restaurant["foto"] ?>">
       <div class="w-[720px] mx-auto">
         <?php if(isset($_SESSION['id']) && $_SESSION['id'] != "") { ?>
           <form method="post" class="flex flex-col gap-2 py-2">
