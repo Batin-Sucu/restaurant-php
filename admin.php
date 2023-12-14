@@ -59,17 +59,20 @@
           <td>
               Adres
           </td>
+        <?php if (!isset($_POST['guncel'])) { ?>
           <td>
               Sahip Adı
           </td>
           <td>
               Sahip Id
           </td>
+        <?php } ?>
           <td>
               İşlemler
           </td>
       </tr>
-      <?php foreach($restaurantlar as $rest =>$key) { ?>
+      <?php if (!isset($_POST['guncel'])) { ?>
+      <?php foreach ($restaurantlar as $rest =>$key) : ?>
         <tr>
             <td>
               <?php echo $key['isim'] ?>
@@ -90,10 +93,37 @@
               <form method="POST" >
                 <input type="hidden" name="id" value="<?php echo $key['restaurant_id'] ?>">    
                 <button name="sil">Sil</button>
+                <button name="guncel">Güncelle</button>
               </form>
             </td>
         </tr>
-      <?php } ?>
+      <?php endforeach; ?>
+      <?php } else { ?>
+        <?php
+        $id = $_POST['id'];
+        $duzen = $db->query("SELECT * from restaurant   WHERE restaurant_id='$id'")->fetch();
+
+        ?>
+        <form method="POST" action="guncelle.php">
+          <tr>
+            <td>
+              <input type="text" name="isim1" value="<?php echo $duzen['isim'] ?>">
+            </td>
+            <td>
+              <input type="text" name="iletisim1" value="<?php echo $duzen['iletisim'] ?>">
+            </td>
+            <td>
+              <input type="text" name="adres1" value="<?php echo $duzen['adres']  ?>">
+            </td>
+            <td>
+
+              <input type="hidden" name="id1" value="<?php echo $duzen['restaurant_id'] ?>">
+              <button name='duzenle'>Düzenle</button>
+
+            </td>
+          </tr>
+        </form>
+      <?php  } ?>
     </table>
   </body>
 </html>
