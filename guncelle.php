@@ -7,6 +7,6 @@ if (isset($_POST['duzenle'])) {
     $adres = $_POST['adres1'];
     $id1 = $_POST['id1'];
     $duzenle = $db->query("UPDATE restaurant SET isim='$isim' ,iletisim='$iletisim' , adres='$adres' WHERE restaurant_id='$id1'  ");
-    header("Location: admin.php");
+    header("Location: adminRest.php");
 }
 ?>

@@ -38,6 +38,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
+    <div class="flex gap-4 items-center justify-center my-2">
+      <a class="border rounded hover:bg-neutral-200 p-1" href="adminRest.php">Restoranlar Kontrol</a>
+      <a class="border rounded hover:bg-neutral-200 p-1" href="adminUser.php">Üyeler Kontrol</a>
+    </div>
+    <hr>
     <div>
       <form method="POST" class="mx-auto flex flex-col w-fit mt-4 gap-1">
           <label for="sahip" >Sahibi:</label><input name="sahip" type="text" class="border rounded p-1 w-96"> <br>
@@ -47,83 +52,5 @@
           <button name="restoranKayit" class="border rounded px-12 hover:bg-neutral-200">Kayıt</button>
       </form>
     </div>
-    <hr>
-    <table border="1">
-      <tr>
-          <td>
-              Resturant Adı
-          </td>
-          <td>
-              İletişim
-          </td>
-          <td>
-              Adres
-          </td>
-        <?php if (!isset($_POST['guncel'])) { ?>
-          <td>
-              Sahip Adı
-          </td>
-          <td>
-              Sahip Id
-          </td>
-        <?php } ?>
-          <td>
-              İşlemler
-          </td>
-      </tr>
-      <?php if (!isset($_POST['guncel'])) { ?>
-      <?php foreach ($restaurantlar as $rest =>$key) : ?>
-        <tr>
-            <td>
-              <?php echo $key['isim'] ?>
-            </td>
-            <td>
-              <?php echo $key['iletisim'] ?>
-            </td>
-            <td>
-              <?php echo $key['adres'] ?>
-            </td>
-            <td>
-              <?php echo $key['kullanici_adi'] ?>
-            </td>
-            <td>
-              <?php echo $key['id'] ?>
-            </td>
-            <td>
-              <form method="POST" >
-                <input type="hidden" name="id" value="<?php echo $key['restaurant_id'] ?>">    
-                <button name="sil">Sil</button>
-                <button name="guncel">Güncelle</button>
-              </form>
-            </td>
-        </tr>
-      <?php endforeach; ?>
-      <?php } else { ?>
-        <?php
-        $id = $_POST['id'];
-        $duzen = $db->query("SELECT * from restaurant   WHERE restaurant_id='$id'")->fetch();
-
-        ?>
-        <form method="POST" action="guncelle.php">
-          <tr>
-            <td>
-              <input type="text" name="isim1" value="<?php echo $duzen['isim'] ?>">
-            </td>
-            <td>
-              <input type="text" name="iletisim1" value="<?php echo $duzen['iletisim'] ?>">
-            </td>
-            <td>
-              <input type="text" name="adres1" value="<?php echo $duzen['adres']  ?>">
-            </td>
-            <td>
-
-              <input type="hidden" name="id1" value="<?php echo $duzen['restaurant_id'] ?>">
-              <button name='duzenle'>Düzenle</button>
-
-            </td>
-          </tr>
-        </form>
-      <?php  } ?>
-    </table>
   </body>
 </html>
