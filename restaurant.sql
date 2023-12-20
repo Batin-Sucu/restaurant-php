@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 20, 2023 at 07:42 PM
+-- Generation Time: Dec 20, 2023 at 08:52 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -32,6 +32,20 @@ CREATE TABLE `kullanicilar` (
   `kullanici_adi` text NOT NULL,
   `sifre` text NOT NULL,
   `tur` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `menuler`
+--
+
+CREATE TABLE `menuler` (
+  `menu_id` int(11) NOT NULL,
+  `restaurant_id` int(11) NOT NULL,
+  `isim` text NOT NULL,
+  `foto` text NOT NULL,
+  `fiyat` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -74,6 +88,13 @@ ALTER TABLE `kullanicilar`
   ADD UNIQUE KEY `kullanici_adi` (`kullanici_adi`) USING HASH;
 
 --
+-- Indexes for table `menuler`
+--
+ALTER TABLE `menuler`
+  ADD PRIMARY KEY (`menu_id`),
+  ADD KEY `menuler_ibfk_1` (`restaurant_id`);
+
+--
 -- Indexes for table `restaurant`
 --
 ALTER TABLE `restaurant`
@@ -99,6 +120,12 @@ ALTER TABLE `kullanicilar`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `menuler`
+--
+ALTER TABLE `menuler`
+  MODIFY `menu_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `restaurant`
 --
 ALTER TABLE `restaurant`
@@ -107,6 +134,12 @@ ALTER TABLE `restaurant`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `menuler`
+--
+ALTER TABLE `menuler`
+  ADD CONSTRAINT `menuler_ibfk_1` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurant` (`restaurant_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `restaurant`

@@ -26,6 +26,21 @@
       <p><span class="text-lg">Adres: </span><?php echo $restaurant['adres']; ?></p>
       <img class="mx-auto" width="500px" height="500px" src="<?php echo $restaurant["foto"] ?>">
       <div class="w-[720px] mx-auto">
+        
+      <p class="text-center text-xl font-bold mt-6">MENÜLER</p>
+      <div class="flex flex-wrap gap-4 overflow-x-auto snap-x my-4 border-b pb-6 ">
+        <?php $menuler = $db->query("SELECT * FROM menuler WHERE restaurant_id=$id"); ?>
+        <?php foreach($menuler as $menu) { ?>
+          <div class="flex flex-col border rounded w-fit ">
+            <img height="150px" width="150px" src="<?php echo $menu['foto'] ?>"></img>
+            <div class="p-1">
+              <p class=""><?php echo $menu['isim']; ?></p>
+              <p class="text-sm"><?php echo $menu['fiyat']; ?> TL</p>
+            </div>
+          </div>
+        <?php } ?>
+      </div>
+
         <?php if(isset($_SESSION['id']) && $_SESSION['id'] != "") { ?>
           <form method="post" class="flex flex-col gap-2 py-2">
             <div class="flex gap-2">
@@ -41,7 +56,8 @@
             <textarea name="yorum" cols="20" rows="5" class="border text-sm"><?php if(sizeof($yorumlar) > 0) echo $yorumlar[array_search($_SESSION['id'], array_column($yorumlar, 'kullanici_id'))]['yorum']; ?></textarea>
             <button name="yap" class="border rounded px-12 hover:bg-neutral-200">Yorum yap</button>
           </form>
-        <?php } ?> 
+          <?php } ?> 
+
         <p class="text-center text-2xl mt-24 mb-4">Diğerleri ne düşünüyor??</p>
         <?php foreach($yorumlar as $yorum) { ?>
           <div>

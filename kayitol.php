@@ -32,4 +32,6 @@
 
   $kullaniciId = $db->lastInsertId();
   $_SESSION["id"] = $kullaniciId;
+
+  header("Location: anasayfa.php");
 ?>
