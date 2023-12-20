@@ -28,7 +28,8 @@
             <div class="border rounded p-2 hover:bg-neutral-200">
               <img width="200px" height="200px" src="<?php echo $restaurant["foto"] ?>">
               <div class="relative">
-                <p class="font-bold block text-center"><?php echo $restaurant["isim"] ?> (<?php echo $restaurant["puan"] ?> Puan)</p>
+                <?php $puan = $db->query("SELECT ROUND(AVG(puan),2) FROM yorumlar WHERE restaurant_id = $restaurant[restaurant_id]")->fetch()[0]; ?>
+                <p class="font-bold block text-center"><?php echo $restaurant["isim"] ?> <span class="text-sm">(<?php echo $puan ? $puan : 0 ?> puan)</span></p>
                 <p><?php echo $restaurant["adres"] ?></p>
               </div>
             </div>
