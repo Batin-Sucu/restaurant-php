@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 20, 2023 at 08:52 PM
+-- Generation Time: Dec 23, 2023 at 08:59 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -66,6 +66,20 @@ CREATE TABLE `restaurant` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `siparisler`
+--
+
+CREATE TABLE `siparisler` (
+  `siparis_id` int(11) NOT NULL,
+  `menuler` text NOT NULL,
+  `tutar` int(11) NOT NULL,
+  `zaman` datetime NOT NULL,
+  `kullanici_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `yorumlar`
 --
 
@@ -102,6 +116,13 @@ ALTER TABLE `restaurant`
   ADD KEY `fk_sahip` (`sahip`);
 
 --
+-- Indexes for table `siparisler`
+--
+ALTER TABLE `siparisler`
+  ADD PRIMARY KEY (`siparis_id`),
+  ADD KEY `siparisler_ibfk_1` (`kullanici_id`);
+
+--
 -- Indexes for table `yorumlar`
 --
 ALTER TABLE `yorumlar`
@@ -132,6 +153,12 @@ ALTER TABLE `restaurant`
   MODIFY `restaurant_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `siparisler`
+--
+ALTER TABLE `siparisler`
+  MODIFY `siparis_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- Constraints for dumped tables
 --
 
@@ -146,6 +173,12 @@ ALTER TABLE `menuler`
 --
 ALTER TABLE `restaurant`
   ADD CONSTRAINT `fk_sahip` FOREIGN KEY (`sahip`) REFERENCES `kullanicilar` (`id`);
+
+--
+-- Constraints for table `siparisler`
+--
+ALTER TABLE `siparisler`
+  ADD CONSTRAINT `siparisler_ibfk_1` FOREIGN KEY (`kullanici_id`) REFERENCES `kullanicilar` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `yorumlar`

@@ -1,0 +1,40 @@
+<?php 
+  include "nav.php";
+  require_once "db.php";
+  require_once "session.php";
+  
+  if(!isset($_POST['siparis'])){
+    header("Location: anasayfa.php");
+    return;
+  }
+
+  $menuler = $_POST['menu'];
+  $menuisimleri = implode(',', $menuler);
+  setcookie("menu",$menuisimleri,time()+(60*60*12));
+  $islem = $db->query("SELECT * FROM menuler WHERE menu_id IN ($menuisimleri)")->fetchAll();
+  $toplam = 0;
+  foreach($islem as $i){
+    $toplam += $i['fiyat'];
+  }
+  
+  $user = $db->query("SELECT * FROM kullanicilar WHERE id = {$_SESSION['id']}")->fetch();
+?>
+
+<html>
+  <head>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+    <body>
+      <div class="flex flex-col items-center justify-center gap-6 p-6">
+        <p class="text-lg">Sayın: <span class="text-blue-400"><?php echo $user['kullanici_adi'] ?></span></p>
+        <p class="text-xl">Toplam tutar: <?php echo $toplam ; ?>TL</p> 
+        <form class="flex flex-col gap-4" action="siparisOnay.php" method="post">
+            <input class="border rounded" type="datetime-local" name="gun">
+            <div class="mx-auto">
+              <button class="p-1 bg-green-600 text-white rounded border" name="onayla">Siparisi onayla</button>
+              <a class="text-red-400" href="anasayfa.php">Iptal</a>
+            </div>
+        </form>
+      </div>
+    </body>
+</html>
