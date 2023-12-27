@@ -6,7 +6,8 @@
     <?php include "nav.php"; ?>
     <div class="flex flex-col py-4">
       <form action="ara.php" class="mx-auto flex flex-col gap-2">
-        <input type="text" name="q" placeholder="kebab... lahmacun..." class="border rounded p-1 w-96">
+        <input type="text" name="q" value='<?php echo $_GET["q"] ?>' placeholder="kebab... lahmacun..." class="border rounded p-1 w-96">
+        <label for="cocukParki">Cocuk parki <input id="cocukParki" type="checkbox" name="cocukParki" value="1"></label>
         <button class="border rounded px-12 hover:bg-neutral-200">Ara</button>
       </form>
       <div class="">
@@ -15,9 +16,11 @@
 
           if(!isset($_GET['q']) || empty($_GET['q']))
             return;
+          
+          $cocukParki = isset($_GET['cocukParki']) ? "AND cocuk_parki = 1" : "";
 
           $q = $_GET['q'];
-          $resturantlar = $db->query("SELECT * FROM restaurant WHERE isim LIKE '%$q%'");
+          $resturantlar = $db->query("SELECT * FROM restaurant WHERE isim LIKE '%$q%'". $cocukParki);
         ?>
         <?php if($resturantlar->rowCount() == 0) { ?>
           <p>Aradığınız restoran bulunamadı.</p>
