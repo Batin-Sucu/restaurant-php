@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 27, 2023 at 07:20 PM
+-- Generation Time: Dec 27, 2023 at 08:30 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -31,7 +31,8 @@ CREATE TABLE `kullanicilar` (
   `id` int(11) NOT NULL,
   `kullanici_adi` text NOT NULL,
   `sifre` text NOT NULL,
-  `tur` text NOT NULL
+  `tur` text NOT NULL,
+  `cuzdan` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
