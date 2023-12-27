@@ -65,7 +65,7 @@
                 <option value="1" >1</option>
               </select>
             </div>
-            <textarea name="yorum" cols="20" rows="5" class="border text-sm"><?php if(sizeof($yorumlar) > 0) echo $yorumlar[array_search($_SESSION['id'], array_column($yorumlar, 'kullanici_id'))]['yorum']; ?></textarea>
+            <textarea name="yorum" cols="20" rows="5" class="border text-sm"></textarea>
             <button name="yap" class="border rounded px-12 hover:bg-neutral-200">Yorum yap</button>
           </form>
           <?php } ?> 
