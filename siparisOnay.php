@@ -3,6 +3,11 @@
   require_once "db.php";
   require_once "session.php";
   
+  if(!isset($_POST['onayla'])){
+    header("Location: anasayfa.php");
+    return;
+  }
+  
   $menuisimleri = $_COOKIE["menu"];
   $restaurant_id = $_POST['restaurant_id'];
   $gun = $_POST['gun'];
