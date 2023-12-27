@@ -12,6 +12,7 @@
     $toplam += $i['fiyat'];
   }
   
+  $db->exec("UPDATE kullanicilar SET cuzdan = cuzdan - $toplam WHERE id = {$_SESSION['id']}");
   $db->exec("INSERT INTO siparisler (kullanici_id,menuler,tutar,zaman,restaurant_id) VALUES ('{$_SESSION['id']}','$menuisimleri','$toplam','$gun','$restaurant_id')");
 ?>
 

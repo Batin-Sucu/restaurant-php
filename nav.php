@@ -18,6 +18,7 @@
     <?php if($kullanici['tur'] == 'admin') { ?>
       <a href="admin.php">Admin Yonetim</a>
     <?php } ?>
+    <p><?php echo $kullanici['cuzdan'] ?> ₺</p>
     <p>Hoşgeldin, <?php echo $kullanici['kullanici_adi']?></p>
     <form method="post" action="cikis.php" class="contents">
       <button class="" name="cikis">Cikis yap</button>

@@ -31,23 +31,25 @@
       <div class="w-[720px] mx-auto">
         
       <p class="text-center text-xl font-bold mt-6">MENÜLER</p>
-      <form method="post" action="siparis.php">
-      <div class="flex flex-wrap gap-4 overflow-x-auto snap-x my-4 border-b pb-6 ">
-        <?php $menuler = $db->query("SELECT * FROM menuler WHERE restaurant_id=$id"); ?>
-        <?php foreach($menuler as $menu) { ?>
-          <div class="flex flex-col border rounded w-fit ">
-            <img height="150px" width="150px" src="<?php echo $menu['foto'] ?>"></img>
-            <div class="p-1">
-              <p class=""><?php echo $menu['isim']; ?></p>
-              <p class="text-sm"><?php echo $menu['fiyat']; ?> TL</p>
-                <input type="checkbox" value="<?php echo $menu['menu_id'] ?>" name="menu[]">
-              </div>
-            </div> 
-            <?php } ?>
-          </div>
-          <button class="border rounded px-12 hover:bg-neutral-200" name="siparis">Siparis et</button>
-          <input type="hidden" name="restaurant_id" value="<?php echo $id ?>">
-        </form>
+      <?php $menuler = $db->query("SELECT * FROM menuler WHERE restaurant_id=$id"); ?>
+      <?php if($menuler->rowCount() > 1) { ?>
+        <form method="post" action="siparis.php">
+        <div class="flex flex-wrap gap-4 overflow-x-auto snap-x my-4 border-b pb-6 ">
+          <?php foreach($menuler as $menu) { ?>
+            <div class="flex flex-col border rounded w-fit ">
+              <img height="150px" width="150px" src="<?php echo $menu['foto'] ?>"></img>
+              <div class="p-1">
+                <p class=""><?php echo $menu['isim']; ?></p>
+                <p class="text-sm"><?php echo $menu['fiyat']; ?> TL</p>
+                  <input type="checkbox" value="<?php echo $menu['menu_id'] ?>" name="menu[]">
+                </div>
+              </div> 
+              <?php } ?>
+            </div>
+            <button class="border rounded px-12 hover:bg-neutral-200" name="siparis">Siparis et</button>
+            <input type="hidden" name="restaurant_id" value="<?php echo $id ?>">
+          </form>
+        <?php } ?>
 
         <?php if(isset($_SESSION['id']) && $_SESSION['id'] != "") { ?>
           <form method="post" class="flex flex-col gap-2 py-2">
