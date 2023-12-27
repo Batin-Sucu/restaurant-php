@@ -4,6 +4,7 @@
   require_once "session.php";
   
   $menuisimleri = $_COOKIE["menu"];
+  $restaurant_id = $_POST['restaurant_id'];
   $gun = $_POST['gun'];
   $islem = $db->query("SELECT * FROM menuler WHERE menu_id IN ($menuisimleri)")->fetchAll();
   $toplam = 0;
@@ -11,7 +12,7 @@
     $toplam += $i['fiyat'];
   }
   
-  $db->exec("INSERT INTO siparisler (kullanici_id,menuler,tutar,zaman) VALUES ('{$_SESSION['id']}','$menuisimleri','$toplam','$gun')");
+  $db->exec("INSERT INTO siparisler (kullanici_id,menuler,tutar,zaman,restaurant_id) VALUES ('{$_SESSION['id']}','$menuisimleri','$toplam','$gun','$restaurant_id')");
 ?>
 
 <html>

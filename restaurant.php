@@ -24,6 +24,9 @@
       <p class="text-3xl text-center"><?php echo $restaurant['isim']; ?> <span class="text-sm">(<?php echo $puan ? $puan : 0; ?> Puan)</span></p>
       <p><span class="text-lg">Iletisim: </span><?php echo $restaurant['iletisim']; ?></p>
       <p><span class="text-lg">Adres: </span><?php echo $restaurant['adres']; ?></p>
+      <?php if($restaurant['cocuk_parki']== 1 )  : ?>
+      <p><span class="text-lg">Çocuk Parkı Var </span></p>
+      <?php endif ; ?>
       <img class="mx-auto" width="500px" height="500px" src="<?php echo $restaurant["foto"] ?>">
       <div class="w-[720px] mx-auto">
         
@@ -43,6 +46,7 @@
             <?php } ?>
           </div>
           <button class="border rounded px-12 hover:bg-neutral-200" name="siparis">Siparis et</button>
+          <input type="hidden" name="restaurant_id" value="<?php echo $id ?>">
         </form>
 
         <?php if(isset($_SESSION['id']) && $_SESSION['id'] != "") { ?>

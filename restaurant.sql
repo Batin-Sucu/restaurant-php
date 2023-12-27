@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 23, 2023 at 08:59 PM
+-- Generation Time: Dec 27, 2023 at 07:20 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -60,7 +60,8 @@ CREATE TABLE `restaurant` (
   `iletisim` text NOT NULL,
   `adres` text NOT NULL,
   `sahip` int(11) NOT NULL,
-  `foto` text DEFAULT NULL
+  `foto` text DEFAULT NULL,
+  `cocuk_parki` bit(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -74,7 +75,8 @@ CREATE TABLE `siparisler` (
   `menuler` text NOT NULL,
   `tutar` int(11) NOT NULL,
   `zaman` datetime NOT NULL,
-  `kullanici_id` int(11) NOT NULL
+  `kullanici_id` int(11) NOT NULL,
+  `restaurant_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -120,7 +122,8 @@ ALTER TABLE `restaurant`
 --
 ALTER TABLE `siparisler`
   ADD PRIMARY KEY (`siparis_id`),
-  ADD KEY `siparisler_ibfk_1` (`kullanici_id`);
+  ADD KEY `siparisler_ibfk_1` (`kullanici_id`),
+  ADD KEY `siparisler_ibfk_2` (`restaurant_id`);
 
 --
 -- Indexes for table `yorumlar`
@@ -178,7 +181,8 @@ ALTER TABLE `restaurant`
 -- Constraints for table `siparisler`
 --
 ALTER TABLE `siparisler`
-  ADD CONSTRAINT `siparisler_ibfk_1` FOREIGN KEY (`kullanici_id`) REFERENCES `kullanicilar` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `siparisler_ibfk_1` FOREIGN KEY (`kullanici_id`) REFERENCES `kullanicilar` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `siparisler_ibfk_2` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurant` (`restaurant_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `yorumlar`

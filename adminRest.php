@@ -81,9 +81,9 @@
               <?php echo $key['id'] ?>
             </td>
             <td>
-              <form method="POST">
+              <form method="POST" class="flex items-center my-auto gap-4">
                 <input type="hidden" name="id" value="<?php echo $key['restaurant_id'] ?>">    
-                <button class="bg-red-400 rounded p-1" name="sil">Sil</button>
+                <button class="bg-red-400 px-4 rounded p-1" name="sil">Sil</button>
                 <button class="bg-blue-400 rounded p-1" name="guncel">Düzenle</button>
               </form>
             </td>

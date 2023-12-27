@@ -9,6 +9,7 @@
   }
 
   $menuler = $_POST['menu'];
+  $restaurant_id = $_POST['restaurant_id'];
   $menuisimleri = implode(',', $menuler);
   setcookie("menu",$menuisimleri,time()+(60*60*12));
   $islem = $db->query("SELECT * FROM menuler WHERE menu_id IN ($menuisimleri)")->fetchAll();
@@ -29,6 +30,7 @@
         <p class="text-lg">Sayın: <span class="text-blue-400"><?php echo $user['kullanici_adi'] ?></span></p>
         <p class="text-xl">Toplam tutar: <?php echo $toplam ; ?>TL</p> 
         <form class="flex flex-col gap-4" action="siparisOnay.php" method="post">
+          <input type="hidden" name="restaurant_id" value="<?php echo $restaurant_id ?>">
             <input class="border rounded" type="datetime-local" name="gun">
             <div class="mx-auto">
               <button class="p-1 bg-green-600 text-white rounded border" name="onayla">Siparisi onayla</button>
