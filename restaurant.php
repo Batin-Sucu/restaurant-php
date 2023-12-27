@@ -20,7 +20,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
-    <div class="container mx-auto">
+    <div class="container mx-auto pb-12">
       <p class="text-3xl text-center"><?php echo $restaurant['isim']; ?> <span class="text-sm">(<?php echo $puan ? $puan : 0; ?> Puan)</span></p>
       <p><span class="text-lg">Iletisim: </span><?php echo $restaurant['iletisim']; ?></p>
       <p><span class="text-lg">Adres: </span><?php echo $restaurant['adres']; ?></p>
@@ -46,8 +46,10 @@
               </div> 
               <?php } ?>
             </div>
-            <button class="border rounded px-12 hover:bg-neutral-200" name="siparis">Siparis et</button>
-            <input type="hidden" name="restaurant_id" value="<?php echo $id ?>">
+            <?php if(isset($_SESSION['id'])) { ?>
+              <button class="border rounded px-12 hover:bg-neutral-200" name="siparis">Siparis et</button>
+              <input type="hidden" name="restaurant_id" value="<?php echo $id ?>">
+            <?php } ?>
           </form>
         <?php } ?>
 
