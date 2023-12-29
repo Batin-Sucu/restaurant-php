@@ -51,5 +51,5 @@
     $fileName = $file['name'];
     $filePath = "./files/".md5(time()).$fileName;
     move_uploaded_file($file['tmp_name'], $filePath);
-    $db->query("INSERT INTO restaurant (isim, iletisim, adres, sahip, foto,cocuk_parki) VALUES ('$isim', '$iletisim', '$adres'," .$_SESSION['id'].",'".$filePath. "' ,'$cocukParkC')");
+    $db->query("INSERT INTO restaurant (isim, iletisim, adres, sahip, foto,cocuk_parki) VALUES ('$isim', '$iletisim', '$adres', {$_SESSION['id']},'$filePath' ,$cocukParkC)");
 ?>  
