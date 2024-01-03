@@ -68,7 +68,7 @@
   
   $siparisId = $_POST['siparis'];
   $islem = $_POST['islem'];
-  $siparis = $db->query("SELECT * FROM siparisler WHERE siparis_id = '$siparisId'")->fetch();
+  $siparis = $db->query("SELECT * FROM siparisler INNER JOIN restaurant ON restaurant.restaurant_id = siparisler.restaurant_id WHERE siparis_id = '$siparisId'")->fetch();
 
   if($siparis['durum'] != 0) {
     return;
@@ -76,6 +76,7 @@
 
   if($islem == 'onayla'){
     $db->query("UPDATE siparisler SET durum=1 WHERE siparis_id = '$siparisId'");
+    $db->exec("UPDATE kullanicilar SET cuzdan = cuzdan + {$siparis['tutar']} WHERE id = {$siparis['sahip']}");
   }
 
   if($islem == 'iptal'){
