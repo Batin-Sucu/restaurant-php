@@ -3,11 +3,6 @@
   require_once "session.php";
   require_once "db.php";
   $restaurantlar = $db->query("SELECT restaurant_id FROM restaurant WHERE sahip = " . $_SESSION['id'])->fetchAll();
-
-  if(isset($_POST['delete'])){
-    $sipar = $_POST['siparis'];
-    $sil = $db->query("DELETE FROM siparisler Where siparis_id = '$sipar'");
-  }
 ?>
 <html>
 <head>
@@ -45,13 +40,46 @@
               <td><?php echo $siparis['tutar'] ?> TL</td>
               <td><?php echo $siparis['zaman'] ?></td>
               <td><?php echo $kullanici['kullanici_adi'] ?></td> 
-              <form action="" method="POST">
-                <input type="hidden" name="siparis" value="<?php echo $siparis['siparis_id']?>">
-                <td><button class="border rounded px-12 hover:bg-red-400" name="delete">Sil</button></td>
-              </form>
+              <?php if($siparis['durum'] == 0) { ?>
+                <form action="" method="POST">
+                  <input type="hidden" name="siparis" value="<?php echo $siparis['siparis_id']?>">
+                  <td>
+                    <button class="border rounded px-12 hover:bg-green-400" name="islem" value="onayla">Onayla</button>
+                    <button class="border rounded px-12 hover:bg-red-400" name="islem" value="iptal">Iptal</button>
+                  </td>
+                </form>
+              <?php } else if ($siparis['durum'] == 1) { ?>
+                <td>Onaylandı</td>
+              <?php } else if ($siparis['durum'] == 2) { ?>
+                <td>Reddedildi</td>
+              <?php } ?>
             </tr>
         <?php }} ?>
       </table>
     </div>
   </body>
 </html>
+
+<?php 
+  if(!isset($_POST['siparis']) || 
+     !isset($_POST['islem'])) {
+    return;
+  }
+  
+  $siparisId = $_POST['siparis'];
+  $islem = $_POST['islem'];
+  $siparis = $db->query("SELECT * FROM siparisler WHERE siparis_id = '$siparisId'")->fetch();
+
+  if($siparis['durum'] != 0) {
+    return;
+  }
+
+  if($islem == 'onayla'){
+    $db->query("UPDATE siparisler SET durum=1 WHERE siparis_id = '$siparisId'");
+  }
+
+  if($islem == 'iptal'){
+    $db->exec("UPDATE siparisler SET durum=2 WHERE siparis_id = '$siparisId'");
+    $db->exec("UPDATE kullanicilar SET cuzdan = cuzdan + {$siparis['tutar']} WHERE id = (SELECT kullanici_id FROM siparisler WHERE siparis_id = '$siparisId')");
+  }
+?>

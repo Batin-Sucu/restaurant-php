@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 27, 2023 at 08:30 PM
+-- Generation Time: Jan 03, 2024 at 09:43 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -77,7 +77,8 @@ CREATE TABLE `siparisler` (
   `tutar` int(11) NOT NULL,
   `zaman` datetime NOT NULL,
   `kullanici_id` int(11) NOT NULL,
-  `restaurant_id` int(11) NOT NULL
+  `restaurant_id` int(11) NOT NULL,
+  `durum` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
