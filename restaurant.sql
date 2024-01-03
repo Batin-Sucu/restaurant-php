@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 03, 2024 at 09:43 PM
+-- Generation Time: Jan 03, 2024 at 10:34 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -62,7 +62,9 @@ CREATE TABLE `restaurant` (
   `adres` text NOT NULL,
   `sahip` int(11) NOT NULL,
   `foto` text DEFAULT NULL,
-  `cocuk_parki` bit(1) NOT NULL
+  `cocuk_parki` bit(1) NOT NULL DEFAULT b'0',
+  `muzik` bit(1) NOT NULL DEFAULT b'0',
+  `alkol` bit(1) NOT NULL DEFAULT b'0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------

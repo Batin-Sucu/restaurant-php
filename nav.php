@@ -12,6 +12,7 @@
   <span class="ml-auto"></span>
   <?php if(!empty($_SESSION['id'])) { ?>
     <?php $kullanici = $db->query("SELECT * FROM kullanicilar WHERE id = " . $_SESSION['id'])->fetch() ?>
+    <a href="rezer.php">Rezervasyonlar</a>
     <?php if($kullanici['tur'] == 'yonetici') { ?>
       <a href="yonetim.php">Restoran Yonetim</a>
     <?php } ?>
