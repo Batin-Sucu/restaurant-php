@@ -32,7 +32,7 @@
         
       <p class="text-center text-xl font-bold mt-6">MENÜLER</p>
       <?php $menuler = $db->query("SELECT * FROM menuler WHERE restaurant_id=$id"); ?>
-      <?php if($menuler->rowCount() > 1) { ?>
+      <?php if($menuler->rowCount() > 0) { ?>
         <form method="post" action="siparis.php">
         <div class="flex flex-wrap gap-4 overflow-x-auto snap-x my-4 border-b pb-6 ">
           <?php foreach($menuler as $menu) { ?>
